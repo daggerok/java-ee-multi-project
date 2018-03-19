@@ -17,9 +17,9 @@
 	java:module/HelloServiceBean
 --%>
 <%
-  final HelloService helloService = HelloService.class.cast(
+  final HelloService helloservice = HelloService.class.cast(
       Try.of(() -> new InitialContext().lookup("java:app/ejb-services-0.0.1/HelloServiceBean"))
-         .getOrElse(() -> null)
+         .getOrElseThrow(throwable -> new RuntimeException("Cannot lookup HelloServiceBean"))
   );
 %>
 <html>
