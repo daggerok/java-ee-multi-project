@@ -23,6 +23,6 @@
   <input type="text" name="name" placeholder="What's your name, my friend?" />
   <input type="submit" hidden="hidden" />
 </form>
-<p>db: <%= helloService.getAllGreeting() %></p>
+<p>db: <%= helloService.getAllGreetings() %></p>
 </body>
 </html>
