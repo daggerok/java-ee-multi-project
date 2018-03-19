@@ -1,9 +1,3 @@
-buildscript {
-  ext {
-
-  }
-}
-
 plugins {
   id "war"
 }
