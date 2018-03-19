@@ -19,7 +19,9 @@
 <%
   final HelloService helloservice = HelloService.class.cast(
       Try.of(() -> new InitialContext().lookup("java:app/ejb-services-0.0.1/HelloServiceBean"))
-         .getOrElseThrow(throwable -> new RuntimeException("Cannot lookup HelloServiceBean"))
+         .getOrElseThrow(throwable -> new RuntimeException(
+             "Cannot lookup HelloServiceBean: " + throwable.getLocalizedMessage()
+         ))
   );
 %>
 <html>
