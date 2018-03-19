@@ -26,7 +26,7 @@ public class HelloServiceBean implements HelloService {
   }
 
   @Override
-  public String getAll() {
+  public String getAllGreetings() {
 
     return Json.createObjectBuilder()
                .add("all", helloRepository.findAll()
