@@ -9,7 +9,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-  final HelloService hello = HelloService.class.cast(
+  final HelloService helloService = HelloService.class.cast(
       Try.of(() -> new InitialContext().lookup("java:app/ejb-services-0.0.1/HelloServiceBean"))
          .getOrElse(() -> null)
   );
@@ -23,6 +23,6 @@
   <input type="text" name="name" placeholder="What's your name, my friend?" />
   <input type="submit" hidden="hidden" />
 </form>
-<p>db: <%= hello.getAll() %></p>
+<p>db: <%= helloService.getAllGreeting() %></p>
 </body>
 </html>
