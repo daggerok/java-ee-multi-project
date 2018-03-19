@@ -6,21 +6,25 @@ plugins {
 repositories { mavenCentral() }
 
 dependencies {
-  deploy project(":ejb-data")
-  deploy project(":ejb-services")
-  [":servlet", ":jsp", ":rest", ":web"].each {
-    deploy project(path: it, configuration: "archives")
-  }
+
+  [":ejb-data", ":ejb-services"]
+      .collect { project(it) }
+      .each { deploy it }
+
+  [":servlet", ":jsp", ":rest", ":web"]
+      .collect { project(path: it, configuration: "archives") }
+      .each { deploy it }
 }
 
 ear {
   deploymentDescriptor {
+
     version = "7"
     description = "$rootProject.name Gradle EAR"
-    [":servlet", ":jsp", ":rest", ":web"].each {
-      def p = project(it)
-      webModule("${p.name}-${p.version}.war", "/$p.name")
-    }
+
+    [":servlet", ":jsp", ":rest", ":web"]
+        .collect { project(it) }
+        .each { webModule("${it.name}-${it.version}.war", "/$it.name") }
   }
 }
 
